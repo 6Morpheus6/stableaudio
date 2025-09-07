@@ -28,8 +28,8 @@ module.exports = {
         venv: "env",
         path: "app",                // Edit this to customize the path to start the shell from
         message: [
-          "pip install gradio devicetorch",
-          "pip install ."
+          "uv pip install gradio devicetorch",
+          "uv pip install ."
         ]
       }
     },
@@ -49,12 +49,6 @@ module.exports = {
       params: {
         src: "{{path.resolve(cwd, 'app/conda_env/lib/libsndfile.dylib')}}",
         dest: "{{path.resolve(cwd, 'app/env/lib/python3.10/site-packages/_soundfile_data/libsndfile.dylib')}}",
-      }
-    },
-    {
-      method: "fs.link",
-      params: {
-        venv: "app/env"
       }
     },
     {
