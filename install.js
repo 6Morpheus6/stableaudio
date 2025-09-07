@@ -28,7 +28,7 @@ module.exports = {
         venv: "env",
         path: "app",                // Edit this to customize the path to start the shell from
         message: [
-          "uv pip install gradio devicetorch",
+          "uv pip install gradio devicetorch soxr hf-xet",
           "uv pip install ."
         ]
       }
