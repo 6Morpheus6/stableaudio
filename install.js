@@ -1,6 +1,8 @@
 module.exports = {
+  requires: {
+    bundle: "ai",
+  },
   run: [
-    // Edit this step to customize the git repository to use
     {
       method: "shell.run",
       params: {
@@ -9,27 +11,25 @@ module.exports = {
         ]
       }
     },
-    // Delete this step if your project does not use torch
     {
       method: "script.start",
       params: {
         uri: "torch.js",
         params: {
-          venv: "env",                // Edit this to customize the venv folder path
-          path: "app",                // Edit this to customize the path to start the shell from
-          // xformers: true   // uncomment this line if your project requires xformers
+          venv: "env",
+          path: "app",
+          // xformers: true
         }
       }
     },
-    // Edit this step with your custom install commands
     {
       method: "shell.run",
       params: {
         venv: "env",
-        path: "app",                // Edit this to customize the path to start the shell from
+        path: "app",
         message: [
-          "pip install gradio devicetorch",
-          "pip install ."
+          "uv pip install gradio devicetorch soxr hf-xet",
+          "uv pip install ."
         ]
       }
     },
@@ -49,12 +49,6 @@ module.exports = {
       params: {
         src: "{{path.resolve(cwd, 'app/conda_env/lib/libsndfile.dylib')}}",
         dest: "{{path.resolve(cwd, 'app/env/lib/python3.10/site-packages/_soundfile_data/libsndfile.dylib')}}",
-      }
-    },
-    {
-      method: "fs.link",
-      params: {
-        venv: "app/env"
       }
     },
     {
